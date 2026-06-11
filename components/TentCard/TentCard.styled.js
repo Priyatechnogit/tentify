@@ -81,12 +81,6 @@ export const StatusText = styled.span`
     $available ? theme.colors.available : theme.colors.full};
 `;
 
-export const CapacityText = styled.p`
-  font-size: ${theme.fonts.small};
-  color: ${theme.colors.textMuted};
-  margin: 0;
-`;
-
 export const ArrowIcon = styled.span`
   font-size: 20px;
   color: ${theme.colors.textMuted};
@@ -94,7 +88,7 @@ export const ArrowIcon = styled.span`
   flex-shrink: 0;
 `;
 
-export const BreweryText = styled.p`
+export const MetaText = styled.p`
   font-size: ${theme.fonts.small};
   color: ${theme.colors.textMuted};
   margin: 0;

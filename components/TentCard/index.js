@@ -9,8 +9,7 @@ import {
   StatusRow,
   StatusDot,
   StatusText,
-  CapacityText,
-  BreweryText,
+  MetaText,
   ArrowIcon,
 } from "./TentCard.styled";
 
@@ -26,7 +25,7 @@ export default function TentCard({ tent }) {
         src={tent.image}
         alt={tent.name}
         onError={(event) => {
-          event.target.src = "/images/placeholder.jpg";
+          event.target.src = "/images/tents/placeholder.png";
         }}
       />
       <CardContent>
@@ -42,8 +41,8 @@ export default function TentCard({ tent }) {
             {tent.isAvailable ? "Available" : "Full"}
           </StatusText>
         </StatusRow>
-        <CapacityText>👤 Capacity: {tent.capacity}</CapacityText>
-        <BreweryText>🍺 {tent.brewery}</BreweryText>
+        <MetaText>👤 Capacity: {tent.capacity}</MetaText>
+        <MetaText>🍺 {tent.brewery}</MetaText>
       </CardContent>
       <ArrowIcon>›</ArrowIcon>
     </Card>
