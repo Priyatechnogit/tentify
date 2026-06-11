@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import TentList from "../components/TentList";
-import { PageWrapper, PageHeader, PageTitle } from "./index.styled";
+import { PageWrapper, PageHeader, PageTitle } from "../styles/HomePageStyled";
 
 const fetcher = (url) =>
   fetch(url).then((response) => {
