@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
-const connectToDatabase = require("../connect.js").default;
-const Tent = require("../models/Tent.js").default;
+import mongoose from "mongoose";
+import connectToDatabase from "../connect.js";
+import Tent from "../models/Tent.js";
 
 const tents = [
   {
