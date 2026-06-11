@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
 
-export const ListContainer = styled.div`
+export const ListContainer = styled.ul`
+  list-style: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: ${theme.spacing.medium};
