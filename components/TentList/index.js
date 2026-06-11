@@ -31,7 +31,9 @@ export default function TentList({ tents, isLoading, error }) {
   return (
     <ListContainer>
       {tents.map((tent) => (
-        <TentCard key={tent._id} tent={tent} />
+        <li key={tent._id}>
+          <TentCard tent={tent} />
+        </li>
       ))}
     </ListContainer>
   );

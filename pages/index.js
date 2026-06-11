@@ -16,7 +16,9 @@ export default function HomePage() {
       <PageHeader>
         <PageTitle>Oktoberfest 2026 🍺</PageTitle>
       </PageHeader>
-      <TentList tents={tents} isLoading={isLoading} error={error} />
+      <main>
+        <TentList tents={tents} isLoading={isLoading} error={error} />
+      </main>
     </PageWrapper>
   );
 }
