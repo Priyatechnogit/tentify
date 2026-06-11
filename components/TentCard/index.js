@@ -17,7 +17,7 @@ export default function TentCard({ tent }) {
   const router = useRouter();
 
   function handleClick() {
-    router.push(`/tents/${tent.id}`);
+    router.push(`/tents/${tent._id}`);
   }
   return (
     <Card onClick={handleClick}>
