@@ -62,7 +62,7 @@ export default function TentDetailPage() {
           src={tent.image}
           alt={tent.name}
           onError={(event) => {
-            event.target.src = "/images/placeholder.jpg";
+            event.target.src = "/images/tents/placeholder.png";
           }}
         />
       </HeroWrapper>
