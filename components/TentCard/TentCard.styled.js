@@ -93,3 +93,9 @@ export const ArrowIcon = styled.span`
   padding-right: ${theme.spacing.medium};
   flex-shrink: 0;
 `;
+
+export const BreweryText = styled.p`
+  font-size: ${theme.fonts.small};
+  color: ${theme.colors.textMuted};
+  margin: 0;
+`;

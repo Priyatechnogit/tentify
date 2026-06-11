@@ -9,6 +9,7 @@ import {
   StatusDot,
   StatusText,
   CapacityText,
+  BreweryText,
   ArrowIcon,
 } from "./TentCard.styled";
 
@@ -36,6 +37,7 @@ export default function TentCard({ tent }) {
           </StatusText>
         </StatusRow>
         <CapacityText>👤 Capacity: {tent.capacity}</CapacityText>
+        <BreweryText>🍺 {tent.brewery}</BreweryText>
       </CardContent>
       <ArrowIcon>›</ArrowIcon>
     </Card>
