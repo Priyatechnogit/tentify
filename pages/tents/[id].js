@@ -24,7 +24,7 @@ import {
   PriceValue,
   ErrorMessage,
   LoadingMessage,
-} from "./[id].styled";
+} from "../../components/TentDetail/TentDetail.styled";
 
 const fetcher = (url) =>
   fetch(url).then((response) => {
