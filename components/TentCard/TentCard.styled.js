@@ -44,12 +44,12 @@ export const BadgeRow = styled.div`
 `;
 
 export const CategoryBadge = styled.span`
-  background-color: ${({ category }) =>
-    category === "Indoor"
+  background-color: ${({ $category }) =>
+    $category === "Indoor"
       ? theme.colors.badgeIndoorBackground
       : theme.colors.badgeOutdoorBackground};
-  color: ${({ category }) =>
-    category === "Indoor"
+  color: ${({ $category }) =>
+    $category === "Indoor"
       ? theme.colors.badgeIndoorText
       : theme.colors.badgeOutdoorText};
   padding: 2px ${theme.spacing.small};
@@ -70,15 +70,15 @@ export const StatusDot = styled.span`
   width: 7px;
   height: 7px;
   border-radius: ${theme.borderRadius.full};
-  background-color: ${({ available }) =>
-    available ? theme.colors.available : theme.colors.full};
+  background-color: ${({ $available }) =>
+    $available ? theme.colors.available : theme.colors.full};
 `;
 
 export const StatusText = styled.span`
   font-size: ${theme.fonts.small};
   font-weight: ${theme.fontWeights.bold};
-  color: ${({ available }) =>
-    available ? theme.colors.available : theme.colors.full};
+  color: ${({ $available }) =>
+    $available ? theme.colors.available : theme.colors.full};
 `;
 
 export const CapacityText = styled.p`

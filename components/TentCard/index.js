@@ -25,13 +25,13 @@ export default function TentCard({ tent }) {
       <CardContent>
         <TentName>{tent.name}</TentName>
         <BadgeRow>
-          <CategoryBadge category={tent.category}>
+          <CategoryBadge $category={tent.category}>
             {tent.category}
           </CategoryBadge>
         </BadgeRow>
         <StatusRow>
-          <StatusDot available={tent.isAvailable} />
-          <StatusText available={tent.isAvailable}>
+          <StatusDot $available={tent.isAvailable} />
+          <StatusText $available={tent.isAvailable}>
             {tent.isAvailable ? "Available" : "Full"}
           </StatusText>
         </StatusRow>
