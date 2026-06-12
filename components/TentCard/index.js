@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import {
   Card,
   TentImage,
@@ -14,13 +13,8 @@ import {
 } from "./TentCard.styled";
 
 export default function TentCard({ tent }) {
-  const router = useRouter();
-
-  function handleClick() {
-    router.push(`/tents/${tent._id}`);
-  }
   return (
-    <Card onClick={handleClick}>
+    <Card href={`/tents/${tent._id}`}>
       <TentImage
         src={tent.image}
         alt={tent.name}
