@@ -43,21 +43,38 @@ export default function TentDetailPage() {
   } = useSWR(id ? `/api/tents/${id}` : null, fetcher);
 
   if (isLoading) {
-    return <LoadingMessage>Loading tent details...</LoadingMessage>;
+    return (
+      <PageWrapper>
+        <LoadingMessage>Loading tent details...</LoadingMessage>
+      </PageWrapper>
+    );
   }
 
   if (error) {
-    return <ErrorMessage>Something went wrong. Please try again.</ErrorMessage>;
+    return (
+      <PageWrapper>
+        <ErrorMessage>Something went wrong. Please try again.</ErrorMessage>
+      </PageWrapper>
+    );
   }
 
   if (!tent) {
-    return <ErrorMessage>Tent not found.</ErrorMessage>;
+    return (
+      <PageWrapper>
+        <ErrorMessage>Tent not found.</ErrorMessage>
+      </PageWrapper>
+    );
   }
 
   return (
     <PageWrapper>
       <HeroWrapper>
-        <BackButton onClick={() => router.push("/")}>←</BackButton>
+        <BackButton
+          onClick={() => router.push("/")}
+          aria-label="Back to tent list"
+        >
+          ←
+        </BackButton>
         <HeroImage
           src={tent.image}
           alt={tent.name}
@@ -100,7 +117,7 @@ export default function TentDetailPage() {
         <Divider />
         <PriceRow>
           <PriceLabel>Price per person</PriceLabel>
-          <PriceValue>€{tent.pricePerPerson}.00</PriceValue>
+          <PriceValue>€{Number(tent.pricePerPerson).toFixed(2)}</PriceValue>
         </PriceRow>
       </Content>
     </PageWrapper>

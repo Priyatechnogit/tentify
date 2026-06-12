@@ -18,8 +18,6 @@ export default async function handler(request, response) {
 
     response.status(200).json(tent);
   } catch (error) {
-    response
-      .status(500)
-      .json({ message: "Failed to fetch tent", error: error.message });
+    response.status(500).json({ message: "Failed to fetch tent" });
   }
 }
