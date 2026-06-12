@@ -191,12 +191,14 @@ export const LoadingMessage = styled.div`
 export const BookNowButton = styled.button`
   width: 100%;
   padding: ${theme.spacing.medium};
-  background-color: ${theme.colors.primary};
-  color: ${theme.colors.background};
+  background-color: ${({ disabled }) =>
+    disabled ? theme.colors.border : theme.colors.primary};
+  color: ${({ disabled }) =>
+    disabled ? theme.colors.textMuted : theme.colors.background};
   border: none;
   border-radius: ${theme.borderRadius.medium};
   font-size: ${theme.fonts.medium};
   font-weight: ${theme.fontWeights.bold};
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   margin-top: ${theme.spacing.small};
 `;

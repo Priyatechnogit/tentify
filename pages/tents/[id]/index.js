@@ -123,8 +123,9 @@ export default function TentDetailPage() {
         <BookNowButton
           onClick={() => router.push(`/tents/${id}/book`)}
           aria-label={`Book a table at ${tent.name}`}
+          disabled={!tent.isAvailable}
         >
-          Book Now
+          {tent.isAvailable ? "Book Now" : "Fully Booked"}
         </BookNowButton>
       </Content>
     </PageWrapper>
