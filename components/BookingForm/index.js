@@ -95,8 +95,8 @@ export default function BookingForm({ tent }) {
       if (!response.ok) {
         throw new Error("Failed to confirm booking");
       }
-
-      router.push("/?bookingSuccess=true");
+      const newBooking = await response.json();
+      router.push(`/bookings/${newBooking._id}`);
     } catch (error) {
       setSubmissionError("Something went wrong. Please try again.");
     } finally {
