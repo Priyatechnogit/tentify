@@ -27,6 +27,7 @@ import {
   TotalValue,
   ConfirmButton,
   ErrorMessage,
+  DateSectionLabel,
 } from "./BookingForm.styled";
 
 const TIME_SLOTS = [
@@ -117,7 +118,7 @@ export default function BookingForm({ tent }) {
 
       <FormContent>
         <Section>
-          <SectionLabel>📅 Select Date</SectionLabel>
+          <DateSectionLabel>📅 Select Date</DateSectionLabel>
           <DateRow>
             {dates.map((date) => (
               <DateButton
@@ -136,8 +137,11 @@ export default function BookingForm({ tent }) {
         </Section>
 
         <Section>
-          <SectionLabel>🕐 Select Time Slot</SectionLabel>
+          <SectionLabel htmlFor="time-slot-select">
+            🕐 Select Time Slot
+          </SectionLabel>
           <TimeSlotSelect
+            id="time-slot-select"
             value={selectedTimeSlot}
             onChange={(event) => setSelectedTimeSlot(event.target.value)}
           >
@@ -150,7 +154,7 @@ export default function BookingForm({ tent }) {
         </Section>
 
         <Section>
-          <SectionLabel>👥 Number of Guests</SectionLabel>
+          <DateSectionLabel>👥 Number of Guests</DateSectionLabel>
           <GuestCounter>
             <CounterButton
               onClick={handleDecreaseGuests}
@@ -192,11 +196,7 @@ export default function BookingForm({ tent }) {
 
         {submissionError && <ErrorMessage>{submissionError}</ErrorMessage>}
 
-        <ConfirmButton
-          onClick={handleSubmit}
-          disabled={isSubmitting}
-          aria-label="Confirm booking"
-        >
+        <ConfirmButton onClick={handleSubmit} disabled={isSubmitting}>
           {isSubmitting ? "Confirming..." : "Confirm Booking"}
         </ConfirmButton>
       </FormContent>

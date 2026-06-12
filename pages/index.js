@@ -9,15 +9,9 @@ import {
   SuccessBanner,
 } from "../styles/HomePageStyled";
 
-const fetcher = (url) =>
-  fetch(url).then((response) => {
-    if (!response.ok) throw new Error("Failed to fetch tents");
-    return response.json();
-  });
-
 export default function HomePage() {
   const router = useRouter();
-  const { data: tents, error, isLoading } = useSWR("/api/tents", fetcher);
+  const { data: tents, error, isLoading } = useSWR("/api/tents");
   const bookingSuccess = router.query.bookingSuccess === "true";
 
   useEffect(() => {

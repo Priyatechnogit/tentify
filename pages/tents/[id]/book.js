@@ -7,12 +7,6 @@ import {
   ErrorMessage,
 } from "../../../components/BookingForm/BookingForm.styled";
 
-const fetcher = (url) =>
-  fetch(url).then((response) => {
-    if (!response.ok) throw new Error("Failed to fetch tent");
-    return response.json();
-  });
-
 export default function BookingPage() {
   const router = useRouter();
   const { id } = router.query;
@@ -21,7 +15,7 @@ export default function BookingPage() {
     data: tent,
     error,
     isLoading,
-  } = useSWR(id ? `/api/tents/${id}` : null, fetcher);
+  } = useSWR(id ? `/api/tents/${id}` : null);
 
   if (isLoading) {
     return (

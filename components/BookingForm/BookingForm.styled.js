@@ -247,3 +247,14 @@ export const LoadingMessage = styled.div`
   font-size: ${theme.fonts.medium};
   color: ${theme.colors.textMuted};
 `;
+
+export const DateSectionLabel = styled.p`
+  font-size: ${theme.fonts.small};
+  font-weight: ${theme.fontWeights.bold};
+  color: ${theme.colors.textMuted};
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: ${theme.spacing.xs};
+`;

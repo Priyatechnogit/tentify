@@ -8,7 +8,7 @@ export default async function handler(request, response) {
 
   const { tentId, date, timeSlot, numberOfGuests, totalPrice } = request.body;
 
-  if (!tentId || !date || !timeSlot || !numberOfGuests || !totalPrice) {
+  if (!tentId || !date || !timeSlot || !numberOfGuests || totalPrice == null) {
     return response.status(400).json({ message: "All fields are required" });
   }
 

@@ -27,12 +27,6 @@ import {
   BookNowButton,
 } from "../../../components/TentDetail/TentDetail.styled";
 
-const fetcher = (url) =>
-  fetch(url).then((response) => {
-    if (!response.ok) throw new Error("Failed to fetch tent");
-    return response.json();
-  });
-
 export default function TentDetailPage() {
   const router = useRouter();
   const { id } = router.query;
@@ -41,7 +35,7 @@ export default function TentDetailPage() {
     data: tent,
     error,
     isLoading,
-  } = useSWR(id ? `/api/tents/${id}` : null, fetcher);
+  } = useSWR(id ? `/api/tents/${id}` : null);
 
   if (isLoading) {
     return (
@@ -122,7 +116,6 @@ export default function TentDetailPage() {
         </PriceRow>
         <BookNowButton
           onClick={() => router.push(`/tents/${id}/book`)}
-          aria-label={`Book a table at ${tent.name}`}
           disabled={!tent.isAvailable}
         >
           {tent.isAvailable ? "Book Now" : "Fully Booked"}
