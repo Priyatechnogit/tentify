@@ -4,7 +4,6 @@ import {
   PageWrapper,
   Header,
   BackButton,
-  HeaderTentName,
   CategoryBadge,
   FormContent,
   Section,

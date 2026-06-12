@@ -187,3 +187,16 @@ export const LoadingMessage = styled.div`
   font-size: ${theme.fonts.medium};
   color: ${theme.colors.textMuted};
 `;
+
+export const BookNowButton = styled.button`
+  width: 100%;
+  padding: ${theme.spacing.medium};
+  background-color: ${theme.colors.primary};
+  color: ${theme.colors.background};
+  border: none;
+  border-radius: ${theme.borderRadius.medium};
+  font-size: ${theme.fonts.medium};
+  font-weight: ${theme.fontWeights.bold};
+  cursor: pointer;
+  margin-top: ${theme.spacing.small};
+`;

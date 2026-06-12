@@ -25,12 +25,6 @@ export const BackButton = styled.button`
   gap: ${theme.spacing.xs};
 `;
 
-export const HeaderTentName = styled.span`
-  font-size: ${theme.fonts.medium};
-  font-weight: ${theme.fontWeights.bold};
-  color: ${theme.colors.text};
-`;
-
 export const CategoryBadge = styled.span`
   background-color: ${({ $category }) =>
     $category === "Indoor"

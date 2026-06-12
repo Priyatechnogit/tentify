@@ -24,7 +24,8 @@ import {
   PriceValue,
   ErrorMessage,
   LoadingMessage,
-} from "../../components/TentDetail/TentDetail.styled";
+  BookNowButton,
+} from "../../../components/TentDetail/TentDetail.styled";
 
 const fetcher = (url) =>
   fetch(url).then((response) => {
@@ -119,6 +120,12 @@ export default function TentDetailPage() {
           <PriceLabel>Price per person</PriceLabel>
           <PriceValue>€{Number(tent.pricePerPerson).toFixed(2)}</PriceValue>
         </PriceRow>
+        <BookNowButton
+          onClick={() => router.push(`/tents/${id}/book`)}
+          aria-label={`Book a table at ${tent.name}`}
+        >
+          Book Now
+        </BookNowButton>
       </Content>
     </PageWrapper>
   );
