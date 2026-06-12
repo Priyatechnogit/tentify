@@ -14,7 +14,7 @@ import {
 
 export default function TentCard({ tent }) {
   return (
-    <Card>
+    <Card href={`/tents/${tent._id}`}>
       <TentImage
         src={tent.image}
         alt={tent.name}

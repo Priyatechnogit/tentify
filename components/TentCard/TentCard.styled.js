@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import Link from "next/link";
 import { theme } from "../../styles/theme";
 
-export const Card = styled.div`
+export const Card = styled(Link)`
   display: flex;
   align-items: center;
   background-color: ${theme.colors.surface};
@@ -10,6 +11,7 @@ export const Card = styled.div`
   overflow: hidden;
   cursor: pointer;
   transition: border-color 0.2s ease;
+  text-decoration: none;
 
   &:hover {
     border-color: ${theme.colors.primary};
