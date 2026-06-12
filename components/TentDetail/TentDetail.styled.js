@@ -187,3 +187,18 @@ export const LoadingMessage = styled.div`
   font-size: ${theme.fonts.medium};
   color: ${theme.colors.textMuted};
 `;
+
+export const BookNowButton = styled.button`
+  width: 100%;
+  padding: ${theme.spacing.medium};
+  background-color: ${({ disabled }) =>
+    disabled ? theme.colors.border : theme.colors.primary};
+  color: ${({ disabled }) =>
+    disabled ? theme.colors.textMuted : theme.colors.background};
+  border: none;
+  border-radius: ${theme.borderRadius.medium};
+  font-size: ${theme.fonts.medium};
+  font-weight: ${theme.fontWeights.bold};
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  margin-top: ${theme.spacing.small};
+`;

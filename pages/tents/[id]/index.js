@@ -24,13 +24,8 @@ import {
   PriceValue,
   ErrorMessage,
   LoadingMessage,
-} from "../../components/TentDetail/TentDetail.styled";
-
-const fetcher = (url) =>
-  fetch(url).then((response) => {
-    if (!response.ok) throw new Error("Failed to fetch tent");
-    return response.json();
-  });
+  BookNowButton,
+} from "../../../components/TentDetail/TentDetail.styled";
 
 export default function TentDetailPage() {
   const router = useRouter();
@@ -40,7 +35,7 @@ export default function TentDetailPage() {
     data: tent,
     error,
     isLoading,
-  } = useSWR(id ? `/api/tents/${id}` : null, fetcher);
+  } = useSWR(id ? `/api/tents/${id}` : null);
 
   if (isLoading) {
     return (
@@ -119,6 +114,12 @@ export default function TentDetailPage() {
           <PriceLabel>Price per person</PriceLabel>
           <PriceValue>€{Number(tent.pricePerPerson).toFixed(2)}</PriceValue>
         </PriceRow>
+        <BookNowButton
+          onClick={() => router.push(`/tents/${id}/book`)}
+          disabled={!tent.isAvailable}
+        >
+          {tent.isAvailable ? "Book Now" : "Fully Booked"}
+        </BookNowButton>
       </Content>
     </PageWrapper>
   );
