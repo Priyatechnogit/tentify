@@ -47,7 +47,7 @@ export default function BookingConfirmation({ booking }) {
         <DetailsCard>
           <DetailRow>
             <DetailLabel>Tent</DetailLabel>
-            <DetailValue>{booking.tentId.name}</DetailValue>
+            <DetailValue>{booking.tentId?.name ?? "Unknown tent"}</DetailValue>
           </DetailRow>
           <DetailRow>
             <DetailLabel>Date</DetailLabel>

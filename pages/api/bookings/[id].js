@@ -17,6 +17,7 @@ export default async function handler(request, response) {
 
     return response.status(200).json(booking);
   } catch (error) {
+    console.error("Failed to fetch booking:", error);
     return response.status(500).json({ message: "Failed to fetch booking" });
   }
 }
