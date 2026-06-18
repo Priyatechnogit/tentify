@@ -6,6 +6,7 @@ import {
   PageWrapper,
   PageHeader,
   PageTitle,
+  MyBookingsButton,
   SuccessBanner,
 } from "../styles/HomePageStyled";
 
@@ -27,6 +28,7 @@ export default function HomePage() {
     <PageWrapper>
       <PageHeader>
         <PageTitle>Oktoberfest 2026 🍺</PageTitle>
+        <MyBookingsButton href="/bookings">My Bookings</MyBookingsButton>
       </PageHeader>
       {bookingSuccess && (
         <SuccessBanner>

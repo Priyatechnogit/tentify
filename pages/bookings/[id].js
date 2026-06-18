@@ -17,7 +17,7 @@ export default function BookingConfirmationPage() {
     isLoading,
   } = useSWR(id ? `/api/bookings/${id}` : null);
 
-  if (isLoading) {
+  if (!id || isLoading) {
     return (
       <PageWrapper>
         <LoadingMessage>Loading booking details...</LoadingMessage>
