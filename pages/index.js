@@ -8,21 +8,23 @@ import {
   PageTitle,
   MyBookingsButton,
   SuccessBanner,
+  CancellationBanner,
 } from "../styles/HomePageStyled";
 
 export default function HomePage() {
   const router = useRouter();
   const { data: tents, error, isLoading } = useSWR("/api/tents");
   const bookingSuccess = router.query.bookingSuccess === "true";
+  const cancellationSuccess = router.query.cancellationSuccess === "true";
 
   useEffect(() => {
-    if (bookingSuccess) {
+    if (bookingSuccess || cancellationSuccess) {
       const timer = setTimeout(() => {
         router.replace("/", undefined, { shallow: true });
       }, 3000);
       return () => clearTimeout(timer);
     }
-  }, [bookingSuccess]);
+  }, [bookingSuccess, cancellationSuccess]);
 
   return (
     <PageWrapper>
@@ -34,6 +36,11 @@ export default function HomePage() {
         <SuccessBanner>
           🎉 Booking confirmed! See you at Oktoberfest!{" "}
         </SuccessBanner>
+      )}
+      {cancellationSuccess && (
+        <CancellationBanner>
+          🗑 Booking cancelled successfully!
+        </CancellationBanner>
       )}
       <main>
         <TentList tents={tents} isLoading={isLoading} error={error} />

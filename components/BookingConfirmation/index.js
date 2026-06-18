@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { QRCodeSVG } from "qrcode.react";
+import CancelModal from "../CancelModal";
 import {
   PageWrapper,
   Content,
@@ -17,13 +18,46 @@ import {
   ButtonGroup,
 } from "./BookingConfirmation.styled";
 import { formatDate } from "../../utils/formatDate";
+import { useState } from "react";
 
 export default function BookingConfirmation({ booking }) {
   const router = useRouter();
+  const [showModal, setShowModal] = useState(false);
+  const [isCancelling, setIsCancelling] = useState(false);
+  const [cancellationError, setCancellationError] = useState(null);
+
   const bookingUrl = `https://tentify.com/bookings/${booking._id}`;
+
+  async function handleConfirmCancel() {
+    setIsCancelling(true);
+    setCancellationError(null);
+
+    try {
+      const response = await fetch(`/api/bookings/${booking._id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to cancel booking");
+      }
+      router.push("/?cancellationSuccess=true");
+    } catch (error) {
+      setCancellationError("Something went wrong. Please try again.");
+    } finally {
+      setIsCancelling(false);
+    }
+  }
 
   return (
     <PageWrapper>
+      {showModal && (
+        <CancelModal
+          onConfirm={handleConfirmCancel}
+          onClose={() => setShowModal(false)}
+          isCancelling={isCancelling}
+          cancellationError={cancellationError}
+        />
+      )}
       <Content>
         <ConfirmedHeading>Booking Confirmed! 🍺 🎉</ConfirmedHeading>
         <SubText>Your table is reserved.</SubText>
@@ -60,7 +94,10 @@ export default function BookingConfirmation({ booking }) {
         </DetailsCard>
 
         <ButtonGroup>
-          <CancelButton disabled aria-label="Cancel booking - coming soon">
+          <CancelButton
+            onClick={() => setShowModal(true)}
+            aria-label="Cancel Booking"
+          >
             🗑 Cancel Booking
           </CancelButton>
           <GoHomeButton
