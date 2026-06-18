@@ -6,7 +6,7 @@ export const PageWrapper = styled.div`
   background-color: ${theme.colors.background};
 `;
 
-export const PageHeader = styled.div`
+export const PageHeader = styled.header`
   display: flex;
   align-items: center;
   gap: ${theme.spacing.medium};
@@ -15,8 +15,6 @@ export const PageHeader = styled.div`
 `;
 
 export const BackButton = styled.button`
-  background: none;
-  border: none;
   color: ${theme.colors.text};
   font-size: 20px;
   cursor: pointer;
