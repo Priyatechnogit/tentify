@@ -43,7 +43,7 @@ const tents = [
     category: "Indoor",
     brewery: "Paulaner Brauerei",
     capacity: 850,
-    image: "/images/tents/paulaner-festzelt.webp",
+    image: "/images/tents/paulaner-festzelt.png",
     isAvailable: true,
     pricePerPerson: 49,
   },
