@@ -16,15 +16,7 @@ import {
   GoHomeButton,
   ButtonGroup,
 } from "./BookingConfirmation.styled";
-
-function formatDate(dateString) {
-  return new Date(dateString).toLocaleDateString("en-GB", {
-    weekday: "short",
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-}
+import { formatDate } from "../../utils/formatDate";
 
 export default function BookingConfirmation({ booking }) {
   const router = useRouter();

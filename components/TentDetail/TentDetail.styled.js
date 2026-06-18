@@ -19,8 +19,8 @@ export const BackButton = styled.button`
   width: 36px;
   height: 36px;
   border-radius: ${theme.borderRadius.full};
-  background-color: rgba(255, 255, 255, 0.2);
-  border: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   color: ${theme.colors.white};
   font-size: 18px;
   cursor: pointer;
