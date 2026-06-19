@@ -73,6 +73,11 @@ export const KeepBookingButton = styled.button`
   font-size: ${theme.fonts.medium};
   font-weight: ${theme.fontWeights.bold};
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 `;
 
 export const ErrorMessage = styled.p`

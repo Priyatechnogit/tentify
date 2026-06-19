@@ -18,7 +18,7 @@ export default function CancelModal({
   return (
     <Overlay onClick={onClose}>
       <ModalBox onClick={(event) => event.stopPropagation()}>
-        <ModalTitle> Cancel Booking?</ModalTitle>
+        <ModalTitle>Cancel Booking?</ModalTitle>
         <ModalMessage>
           Are you sure you want to cancel? This cannot be undone.
         </ModalMessage>
@@ -35,6 +35,7 @@ export default function CancelModal({
           </ConfirmCancelButton>
           <KeepBookingButton
             onClick={onClose}
+            disabled={isCancelling}
             aria-label="Keep booking and close modal"
           >
             Keep Booking
