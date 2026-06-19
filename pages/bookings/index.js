@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import BookingCard from "../../components/BookingCard";
+import BottomNav from "../../components/BottomNav";
 import {
   PageWrapper,
   PageHeader,
@@ -41,6 +42,7 @@ export default function BookingsPage() {
     return (
       <PageWrapper>
         <LoadingMessage>Loading bookings...</LoadingMessage>
+        <BottomNav />
       </PageWrapper>
     );
   }
@@ -49,6 +51,7 @@ export default function BookingsPage() {
     return (
       <PageWrapper>
         <ErrorMessage>Something went wrong. Please try again.</ErrorMessage>
+        <BottomNav />
       </PageWrapper>
     );
   }
@@ -99,6 +102,7 @@ export default function BookingsPage() {
           ))}
         </BookingList>
       )}
+      <BottomNav />
     </PageWrapper>
   );
 }

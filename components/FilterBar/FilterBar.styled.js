@@ -3,9 +3,10 @@ import { theme } from "../../styles/theme";
 
 export const FilterRow = styled.div`
   display: flex;
+  justify-content: center;
   gap: ${theme.spacing.small};
   padding: ${theme.spacing.medium};
-  overflow-x: auto;
+  flex-wrap: wrap;
 `;
 
 export const FilterButton = styled.button`
