@@ -87,8 +87,7 @@ export const CancelButton = styled.button`
   border-radius: ${theme.borderRadius.medium};
   font-size: ${theme.fonts.medium};
   font-weight: ${theme.fontWeights.bold};
-  cursor: not-allowed;
-  opacity: 0.7;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;

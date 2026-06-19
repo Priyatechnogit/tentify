@@ -42,3 +42,15 @@ export const SuccessBanner = styled.div`
   margin: ${theme.spacing.medium};
   text-align: center;
 `;
+
+export const CancellationBanner = styled.div`
+  background-color: ${theme.colors.fullBackground};
+  border: 1px solid ${theme.colors.full};
+  border-radius: ${theme.borderRadius.medium};
+  color: ${theme.colors.full};
+  font-size: ${theme.fonts.body};
+  font-weight: ${theme.fontWeights.semibold};
+  padding: ${theme.spacing.medium};
+  margin: ${theme.spacing.medium};
+  text-align: center;
+`;
