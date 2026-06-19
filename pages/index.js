@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import TentList from "../components/TentList";
+import FilterBar from "../components/FilterBar";
 import {
   PageWrapper,
   PageHeader,
@@ -16,6 +17,7 @@ export default function HomePage() {
   const { data: tents, error, isLoading } = useSWR("/api/tents");
   const bookingSuccess = router.query.bookingSuccess === "true";
   const cancellationSuccess = router.query.cancellationSuccess === "true";
+  const [activeFilter, setActiveFilter] = useState("All");
 
   useEffect(() => {
     if (bookingSuccess || cancellationSuccess) {
@@ -25,6 +27,14 @@ export default function HomePage() {
       return () => clearTimeout(timer);
     }
   }, [bookingSuccess, cancellationSuccess]);
+
+  const filteredTents = tents
+    ? tents.filter((tent) => {
+        if (activeFilter === "All") return true;
+        if (activeFilter === "Available") return tent.isAvailable;
+        return tent.category === activeFilter;
+      })
+    : [];
 
   return (
     <PageWrapper>
@@ -42,8 +52,9 @@ export default function HomePage() {
           🗑 Booking cancelled successfully!
         </CancellationBanner>
       )}
+      <FilterBar activeFilter={activeFilter} onFilterChange={setActiveFilter} />
       <main>
-        <TentList tents={tents} isLoading={isLoading} error={error} />
+        <TentList tents={filteredTents} isLoading={isLoading} error={error} />
       </main>
     </PageWrapper>
   );
