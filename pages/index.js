@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import TentList from "../components/TentList";
 import FilterBar from "../components/FilterBar";
+import BottomNav from "../components/BottomNav";
 import {
   PageWrapper,
   PageHeader,
   PageTitle,
-  MyBookingsButton,
   SuccessBanner,
   CancellationBanner,
 } from "../styles/HomePageStyled";
@@ -40,7 +40,6 @@ export default function HomePage() {
     <PageWrapper>
       <PageHeader>
         <PageTitle>Oktoberfest 2026 🍺</PageTitle>
-        <MyBookingsButton href="/bookings">My Bookings</MyBookingsButton>
       </PageHeader>
       {bookingSuccess && (
         <SuccessBanner>
@@ -56,6 +55,7 @@ export default function HomePage() {
       <main>
         <TentList tents={filteredTents} isLoading={isLoading} error={error} />
       </main>
+      <BottomNav />
     </PageWrapper>
   );
 }
