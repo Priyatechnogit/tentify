@@ -1,10 +1,11 @@
+import AboutPage from "../components/AboutPage";
 import BottomNav from "../components/BottomNav";
-import { PageWrapper } from "../styles/HomePageStyled";
 
-export default function AboutPage() {
+export default function About() {
   return (
-    <PageWrapper>
+    <>
+      <AboutPage />
       <BottomNav />
-    </PageWrapper>
+    </>
   );
 }
