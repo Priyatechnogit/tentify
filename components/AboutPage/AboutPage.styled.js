@@ -26,7 +26,7 @@ export const SectionList = styled.div`
   padding: ${theme.spacing.medium};
 `;
 
-export const SectionCard = styled.div`
+export const SectionCard = styled.article`
   display: flex;
   align-items: center;
   gap: ${theme.spacing.medium};
