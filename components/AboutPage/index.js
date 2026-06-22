@@ -19,7 +19,7 @@ export default function AboutPage() {
       </PageHeader>
       <SectionList>
         {SECTIONS.map((section) => (
-          <SectionCard key={section.title}>
+          <SectionCard key={section.title} href={section.href}>
             <SectionImage
               src={section.image}
               alt={section.title}

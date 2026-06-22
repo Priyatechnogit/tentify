@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Link from "next/link";
 import { theme } from "../../styles/theme";
 
 export const PageWrapper = styled.div`
@@ -26,7 +27,7 @@ export const SectionList = styled.div`
   padding: ${theme.spacing.medium};
 `;
 
-export const SectionCard = styled.article`
+export const SectionCard = styled(Link)`
   display: flex;
   align-items: center;
   gap: ${theme.spacing.medium};
@@ -34,6 +35,12 @@ export const SectionCard = styled.article`
   border: 1px solid ${theme.colors.border};
   border-radius: ${theme.borderRadius.large};
   padding: ${theme.spacing.medium};
+  text-decoration: none;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: ${theme.colors.primary};
+  }
 `;
 
 export const SectionImage = styled.img`

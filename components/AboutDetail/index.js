@@ -14,7 +14,13 @@ import {
   FunFactText,
 } from "./AboutDetail.styled";
 
-export default function AboutDetail({ title, image, description, funFact }) {
+export default function AboutDetail({
+  title,
+  image,
+  description,
+  funFact,
+  imagePosition,
+}) {
   const router = useRouter();
 
   return (
@@ -31,6 +37,7 @@ export default function AboutDetail({ title, image, description, funFact }) {
       <HeroImage
         src={image}
         alt={title}
+        $position={imagePosition}
         onError={(event) => {
           event.target.src = "/images/tents/placeholder.png";
         }}
