@@ -26,7 +26,7 @@ export default function HomePage() {
       }, 3000);
       return () => clearTimeout(timer);
     }
-  }, [bookingSuccess, cancellationSuccess]);
+  }, [bookingSuccess, cancellationSuccess, router]);
 
   const filteredTents = tents
     ? tents.filter((tent) => {
