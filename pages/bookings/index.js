@@ -1,3 +1,4 @@
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
@@ -21,9 +22,24 @@ import {
 
 export default function BookingsPage() {
   const router = useRouter();
+  const { data: session, status } = useSession();
   const [activeTab, setActiveTab] = useState("upcoming");
 
   const { data: bookings, error, isLoading } = useSWR("/api/bookings");
+
+  if (status === "loading") {
+    return (
+      <PageWrapper>
+        <LoadingMessage>Loading...</LoadingMessage>
+        <BottomNav />
+      </PageWrapper>
+    );
+  }
+
+  if (!session) {
+    router.push("/api/auth/signin");
+    return null;
+  }
 
   const now = new Date();
 

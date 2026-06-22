@@ -1,3 +1,5 @@
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../auth/[...nextauth]";
 import connectToDatabase from "../../../db/connect";
 import Booking from "../../../db/models/Booking";
 import Tent from "../../../db/models/Tent";
@@ -20,13 +22,23 @@ export default async function handler(request, response) {
     }
   }
   if (request.method === "DELETE") {
+    const session = await getServerSession(request, response, authOptions);
+
+    if (!session) {
+      return response.status(401).json({ message: "Not authenticated" });
+    }
+
     try {
       await connectToDatabase();
       const booking = await Booking.findById(id);
+
       if (!booking) {
         return response.status(404).json({ message: "Booking not found" });
       }
 
+      if (booking.owner && booking.owner !== session.user.email) {
+        return response.status(403).json({ message: "Not authorized" });
+      }
       const tentId = booking.tentId;
 
       await Booking.findByIdAndDelete(id);

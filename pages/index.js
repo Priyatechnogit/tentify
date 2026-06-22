@@ -4,6 +4,7 @@ import useSWR from "swr";
 import TentList from "../components/TentList";
 import FilterBar from "../components/FilterBar";
 import BottomNav from "../components/BottomNav";
+import AuthButton from "../components/AuthButton";
 import {
   PageWrapper,
   PageHeader,
@@ -40,6 +41,7 @@ export default function HomePage() {
     <PageWrapper>
       <PageHeader>
         <PageTitle>Oktoberfest 2026 🍺</PageTitle>
+        <AuthButton />
       </PageHeader>
       {bookingSuccess && (
         <SuccessBanner>

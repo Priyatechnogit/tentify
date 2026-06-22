@@ -1,11 +1,19 @@
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../auth/[...nextauth]";
 import connectToDatabase from "../../../db/connect";
 import Booking from "../../../db/models/Booking";
 
 export default async function handler(request, response) {
   if (request.method === "GET") {
+    const session = await getServerSession(request, response, authOptions);
+
+    if (!session) {
+      return response.status(401).json({ message: "Not authenticated" });
+    }
+
     try {
       await connectToDatabase();
-      const bookings = await Booking.find({})
+      const bookings = await Booking.find({ owner: session.user.email })
         .populate("tentId")
         .sort({ date: 1 });
       return response.status(200).json(bookings);
@@ -16,6 +24,12 @@ export default async function handler(request, response) {
   }
 
   if (request.method === "POST") {
+    const session = await getServerSession(request, response, authOptions);
+
+    if (!session) {
+      return response.status(401).json({ message: "Not authenticated" });
+    }
+
     const { tentId, date, timeSlot, numberOfGuests, totalPrice } = request.body;
 
     if (
@@ -36,6 +50,7 @@ export default async function handler(request, response) {
         timeSlot,
         numberOfGuests,
         totalPrice,
+        owner: session.user.email,
       });
       return response.status(201).json(newBooking);
     } catch (error) {
