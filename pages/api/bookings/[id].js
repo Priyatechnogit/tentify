@@ -39,6 +39,12 @@ export default async function handler(request, response) {
       if (booking.owner && booking.owner !== session.user.email) {
         return response.status(403).json({ message: "Not authorized" });
       }
+
+      if (new Date(booking.date) < new Date()) {
+        return response
+          .status(400)
+          .json({ message: "Cannot cancel a past booking" });
+      }
       const tentId = booking.tentId;
 
       await Booking.findByIdAndDelete(id);
