@@ -22,13 +22,12 @@ export default async function handler(request, response) {
     }
   }
   if (request.method === "DELETE") {
-    const session = await getServerSession(request, response, authOptions);
-
-    if (!session) {
-      return response.status(401).json({ message: "Not authenticated" });
-    }
-
     try {
+      const session = await getServerSession(request, response, authOptions);
+
+      if (!session) {
+        return response.status(401).json({ message: "Not authenticated" });
+      }
       await connectToDatabase();
       const booking = await Booking.findById(id);
 
