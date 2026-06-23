@@ -28,6 +28,8 @@ export default function BookingConfirmation({ booking }) {
 
   const bookingUrl = `https://tentify.com/bookings/${booking._id}`;
 
+  const isPastBooking = new Date(booking.date) < new Date();
+
   async function handleConfirmCancel() {
     setIsCancelling(true);
     setCancellationError(null);
@@ -94,12 +96,14 @@ export default function BookingConfirmation({ booking }) {
         </DetailsCard>
 
         <ButtonGroup>
-          <CancelButton
-            onClick={() => setShowModal(true)}
-            aria-label="Cancel Booking"
-          >
-            🗑 Cancel Booking
-          </CancelButton>
+          {!isPastBooking && (
+            <CancelButton
+              onClick={() => setShowModal(true)}
+              aria-label="Cancel Booking"
+            >
+              🗑 Cancel Booking
+            </CancelButton>
+          )}
           <GoHomeButton
             onClick={() => router.push("/")}
             aria-label="Go to home page"

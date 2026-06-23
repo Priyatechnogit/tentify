@@ -1,3 +1,4 @@
+import { useSession, signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import {
@@ -55,6 +56,7 @@ function generateUpcomingDates() {
 
 export default function BookingForm({ tent }) {
   const router = useRouter();
+  const { data: session } = useSession();
   const dates = generateUpcomingDates();
 
   const [selectedDate, setSelectedDate] = useState(dates[0].fullDate);
@@ -76,6 +78,10 @@ export default function BookingForm({ tent }) {
   }
 
   async function handleSubmit() {
+    if (!session) {
+      signIn("github");
+      return;
+    }
     setIsSubmitting(true);
     setSubmissionError(null);
 
