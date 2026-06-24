@@ -54,18 +54,39 @@ function generateUpcomingDates() {
   return dates;
 }
 
+function isTimeSlotPast(timeSlot, selectedDate) {
+  const now = new Date();
+  const isToday = selectedDate.toDateString() === now.toDateString();
+  if (!isToday) return false;
+  const startPart = timeSlot.split("–")[0].trim();
+  const [time, modifier] = startPart.split(" ");
+  let [hours, minutes] = time.split(":").map(Number);
+  if (modifier === "PM" && hours < 12) hours += 12;
+  if (modifier === "AM" && hours === 12) hours = 0;
+  const slotStartTime = new Date(now);
+  slotStartTime.setHours(hours, minutes, 0, 0);
+  return now >= slotStartTime;
+}
+
+function getFirstAvailableSlot(date) {
+  return TIME_SLOTS.find((timeSlot) => !isTimeSlotPast(timeSlot, date)) ?? null;
+}
+
 export default function BookingForm({ tent }) {
   const router = useRouter();
   const { data: session } = useSession();
   const dates = generateUpcomingDates();
 
   const [selectedDate, setSelectedDate] = useState(dates[0].fullDate);
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState(TIME_SLOTS[0]);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(() =>
+    getFirstAvailableSlot(dates[0].fullDate)
+  );
   const [numberOfGuests, setNumberOfGuests] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionError, setSubmissionError] = useState(null);
 
   const totalPrice = numberOfGuests * tent.pricePerPerson;
+  const hasNoAvailableSlots = selectedTimeSlot === null;
 
   function handleDecreaseGuests() {
     setNumberOfGuests((previousCount) => Math.max(1, previousCount - 1));
@@ -75,6 +96,11 @@ export default function BookingForm({ tent }) {
     setNumberOfGuests((previousCount) =>
       Math.min(tent.capacity, previousCount + 1)
     );
+  }
+
+  function handleDateChange(date) {
+    setSelectedDate(date);
+    setSelectedTimeSlot(getFirstAvailableSlot(date));
   }
 
   async function handleSubmit() {
@@ -132,7 +158,7 @@ export default function BookingForm({ tent }) {
                 $selected={
                   selectedDate.toDateString() === date.fullDate.toDateString()
                 }
-                onClick={() => setSelectedDate(date.fullDate)}
+                onClick={() => handleDateChange(date.fullDate)}
                 aria-label={`Select ${date.label} ${date.number}`}
               >
                 <DateDay>{date.label}</DateDay>
@@ -148,11 +174,20 @@ export default function BookingForm({ tent }) {
           </SectionLabel>
           <TimeSlotSelect
             id="time-slot-select"
-            value={selectedTimeSlot}
+            value={selectedTimeSlot ?? ""}
             onChange={(event) => setSelectedTimeSlot(event.target.value)}
           >
+            {hasNoAvailableSlots && (
+              <option value="" disabled>
+                No slots available today
+              </option>
+            )}
             {TIME_SLOTS.map((timeSlot) => (
-              <option key={timeSlot} value={timeSlot}>
+              <option
+                key={timeSlot}
+                value={timeSlot}
+                disabled={isTimeSlotPast(timeSlot, selectedDate)}
+              >
                 {timeSlot}
               </option>
             ))}
@@ -202,7 +237,10 @@ export default function BookingForm({ tent }) {
 
         {submissionError && <ErrorMessage>{submissionError}</ErrorMessage>}
 
-        <ConfirmButton onClick={handleSubmit} disabled={isSubmitting}>
+        <ConfirmButton
+          onClick={handleSubmit}
+          disabled={isSubmitting || hasNoAvailableSlots}
+        >
           {isSubmitting ? "Confirming..." : "Confirm Booking"}
         </ConfirmButton>
       </FormContent>
