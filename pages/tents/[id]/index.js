@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import ReviewList from "../../../components/ReviewList";
 import {
   PageWrapper,
   HeroImage,
@@ -36,6 +37,20 @@ export default function TentDetailPage() {
     error,
     isLoading,
   } = useSWR(id ? `/api/tents/${id}` : null);
+
+  const {
+    data: reviews,
+    error: reviewsError,
+    isLoading: isReviewsLoading,
+  } = useSWR(id ? `/api/reviews/${id}` : null);
+
+  const averageRating =
+    reviews && reviews.length > 0
+      ? (
+          reviews.reduce((sum, review) => sum + review.rating, 0) /
+          reviews.length
+        ).toFixed(1)
+      : null;
 
   if (isLoading) {
     return (
@@ -80,7 +95,9 @@ export default function TentDetailPage() {
       </HeroWrapper>
       <Content>
         <TentHeader>
-          <TentName>{tent.name}</TentName>
+          <TentName>
+            {tent.name} {averageRating && `⭐ ${averageRating}`}
+          </TentName>
           <CategoryBadge $category={tent.category}>
             {tent.category}
           </CategoryBadge>
@@ -120,6 +137,13 @@ export default function TentDetailPage() {
         >
           {tent.isAvailable ? "Book Now" : "Fully Booked"}
         </BookNowButton>
+        <Divider />
+        <SectionTitle>Guest Reviews</SectionTitle>
+        {isReviewsLoading ? (
+          <LoadingMessage>Loading reviews...</LoadingMessage>
+        ) : (
+          <ReviewList reviews={reviews} error={reviewsError} />
+        )}
       </Content>
     </PageWrapper>
   );
