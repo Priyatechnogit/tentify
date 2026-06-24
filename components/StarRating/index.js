@@ -5,7 +5,7 @@ export default function StarRating({ rating }) {
     <StarContainer aria-label={`Rating: ${rating} out of 5 stars`}>
       {[1, 2, 3, 4, 5].map((star) => (
         <Star key={star} $filled={star <= rating}>
-          ★
+          {star <= rating ? "★" : "☆"}
         </Star>
       ))}
     </StarContainer>
