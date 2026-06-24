@@ -50,7 +50,8 @@ export default function WaitlistButton({ tentId }) {
     return (
       <ButtonWrapper>
         <SuccessMessage>
-          ✅ You're on the waitlist! We'll let you know if a spot opens up.
+          ✅ You&apos;re on the waitlist! We&apos;ll let you know if a spot
+          opens up.
         </SuccessMessage>
       </ButtonWrapper>
     );
