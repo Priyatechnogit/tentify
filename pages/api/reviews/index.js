@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 import dbConnect from "../../../db/connect";
 import Review from "../../../db/models/Review";
+import Booking from "../../../db/models/Booking";
 
 export default async function handler(request, response) {
   if (request.method !== "POST") {
@@ -18,6 +19,15 @@ export default async function handler(request, response) {
   await dbConnect();
 
   try {
+    const booking = await Booking.findById(bookingId);
+
+    if (!booking) {
+      return response.status(404).json({ message: "Booking not found" });
+    }
+
+    if (booking.owner !== session.user.name) {
+      return response.status(403).json({ message: "Forbidden" });
+    }
     const existingReview = await Review.findOne({ bookingId });
     if (existingReview) {
       return response
