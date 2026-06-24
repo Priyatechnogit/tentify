@@ -18,7 +18,8 @@ export default function ReviewForm({ tentId, bookingId }) {
   const [submissionError, setSubmissionError] = useState(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  async function handleSubmit() {
+  async function handleSubmit(event) {
+    event.preventDefault();
     if (rating === 0) {
       setSubmissionError("Please select a star rating.");
       return;
@@ -62,36 +63,37 @@ export default function ReviewForm({ tentId, bookingId }) {
   return (
     <FormWrapper>
       <FormTitle>Leave a Review</FormTitle>
-      <StarRow onMouseLeave={() => setHoveredRating(0)}>
-        {[1, 2, 3, 4, 5].map((star) => (
-          <StarButton
-            key={star}
-            type="button"
-            $filled={star <= (rating > 0 ? rating : hoveredRating)}
-            onClick={() => setRating(star)}
-            onMouseEnter={() => setHoveredRating(star)}
-            aria-label={`Rate ${star} out of 5`}
-          >
-            {star <= (rating > 0 ? rating : hoveredRating) ? "★" : "☆"}
-          </StarButton>
-        ))}
-      </StarRow>
-      <CommentInput
-        value={comment}
-        onChange={(event) => setComment(event.target.value)}
-        placeholder="Share your experience (optional)"
-        aria-label="Review comment"
-        rows={4}
-      />
-      {submissionError && <ErrorMessage>{submissionError}</ErrorMessage>}
-      <SubmitButton
-        type="button"
-        onClick={handleSubmit}
-        disabled={isSubmitting}
-        aria-label="Submit review"
-      >
-        {isSubmitting ? "Submitting..." : "Submit Review"}
-      </SubmitButton>
+      <form onSubmit={handleSubmit}>
+        <StarRow onMouseLeave={() => setHoveredRating(0)}>
+          {[1, 2, 3, 4, 5].map((star) => (
+            <StarButton
+              key={star}
+              type="button"
+              $filled={star <= (rating > 0 ? rating : hoveredRating)}
+              onClick={() => setRating(star)}
+              onMouseEnter={() => setHoveredRating(star)}
+              aria-label={`Rate ${star} out of 5`}
+            >
+              {star <= (rating > 0 ? rating : hoveredRating) ? "★" : "☆"}
+            </StarButton>
+          ))}
+        </StarRow>
+        <CommentInput
+          value={comment}
+          onChange={(event) => setComment(event.target.value)}
+          placeholder="Share your experience (optional)"
+          aria-label="Review comment"
+          rows={4}
+        />
+        {submissionError && <ErrorMessage>{submissionError}</ErrorMessage>}
+        <SubmitButton
+          type="submit"
+          disabled={isSubmitting}
+          aria-label="Submit review"
+        >
+          {isSubmitting ? "Submitting..." : "Submit Review"}
+        </SubmitButton>
+      </form>
     </FormWrapper>
   );
 }

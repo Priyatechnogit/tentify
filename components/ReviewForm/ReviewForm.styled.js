@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../styles/theme";
 
 export const FormWrapper = styled.div`
   display: flex;
@@ -8,9 +9,9 @@ export const FormWrapper = styled.div`
 `;
 
 export const FormTitle = styled.h3`
-  font-size: 1rem;
-  font-weight: 700;
-  color: #fff;
+  font-size: ${theme.fonts.medium};
+  font-weight: ${theme.fontWeights.bold};
+  color: ${theme.colors.text};
   margin: 0;
 `;
 
@@ -24,54 +25,54 @@ export const StarButton = styled.button`
   border: none;
   font-size: 2rem;
   cursor: pointer;
-  color: ${({ $filled }) => ($filled ? "#f5a623" : "#555")};
+  color: ${({ $filled }) =>
+    $filled ? theme.colors.primary : theme.colors.textMuted};
   padding: 0;
-  transition: color 0.15s ease;
-  transform: ${({ $filled }) => ($filled ? "scale(1.1)" : "scale(1)")};
   transition:
     color 0.15s ease,
     transform 0.15s ease;
+  transform: ${({ $filled }) => ($filled ? "scale(1.1)" : "scale(1)")};
 `;
 
 export const CommentInput = styled.textarea`
-  background-color: #1e1e2e;
-  border: 1px solid #333;
-  border-radius: 8px;
+  background-color: ${theme.colors.surfaceLight};
+  border: 1px solid ${theme.colors.border};
+  border-radius: ${theme.borderRadius.medium};
   padding: 0.75rem;
-  color: #fff;
-  font-size: 0.95rem;
+  color: ${theme.colors.text};
+  font-size: ${theme.fonts.body};
   resize: none;
   width: 100%;
   box-sizing: border-box;
 
   &::placeholder {
-    color: #aaa;
+    color: ${theme.colors.textMuted};
   }
 `;
 
 export const SubmitButton = styled.button`
   width: 100%;
   padding: 0.875rem;
-  background-color: #f5a623;
-  color: #000;
+  background-color: ${theme.colors.primary};
+  color: ${theme.colors.background};
   border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 700;
+  border-radius: ${theme.borderRadius.medium};
+  font-size: ${theme.fonts.medium};
+  font-weight: ${theme.fontWeights.bold};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   opacity: ${({ disabled }) => (disabled ? 0.6 : 1)};
 `;
 
 export const ErrorMessage = styled.p`
-  color: #e74c3c;
-  font-size: 0.9rem;
+  color: ${theme.colors.error};
+  font-size: ${theme.fonts.body};
   margin: 0;
 `;
 
 export const SuccessMessage = styled.p`
   text-align: center;
-  color: #f5a623;
-  font-size: 1rem;
-  font-weight: 600;
+  color: ${theme.colors.primary};
+  font-size: ${theme.fonts.medium};
+  font-weight: ${theme.fontWeights.semibold};
   padding: 1rem 0;
 `;
