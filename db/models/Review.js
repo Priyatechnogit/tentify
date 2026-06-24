@@ -10,11 +10,9 @@ const reviewSchema = new mongoose.Schema(
     bookingId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Booking",
-      required: false,
     },
     owner: {
       type: String,
-      required: false,
     },
     rating: {
       type: Number,
@@ -24,7 +22,6 @@ const reviewSchema = new mongoose.Schema(
     },
     comment: {
       type: String,
-      required: false,
     },
   },
   { timestamps: true }
