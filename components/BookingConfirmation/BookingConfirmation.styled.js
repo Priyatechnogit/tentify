@@ -131,3 +131,16 @@ export const ButtonGroup = styled.div`
   flex-direction: column;
   gap: ${theme.spacing.small};
 `;
+
+export const LeaveReviewButton = styled.button`
+  width: 100%;
+  padding: 0.875rem;
+  background-color: transparent;
+  color: #f5a623;
+  border: 2px solid #f5a623;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.5rem;
+`;

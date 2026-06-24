@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { QRCodeSVG } from "qrcode.react";
 import CancelModal from "../CancelModal";
+import ReviewForm from "../ReviewForm";
 import {
   PageWrapper,
   Content,
@@ -16,6 +17,7 @@ import {
   CancelButton,
   GoHomeButton,
   ButtonGroup,
+  LeaveReviewButton,
 } from "./BookingConfirmation.styled";
 import { formatDate } from "../../utils/formatDate";
 import { useState } from "react";
@@ -25,6 +27,7 @@ export default function BookingConfirmation({ booking }) {
   const [showModal, setShowModal] = useState(false);
   const [isCancelling, setIsCancelling] = useState(false);
   const [cancellationError, setCancellationError] = useState(null);
+  const [showReviewForm, setShowReviewForm] = useState(false);
 
   const bookingUrl = `https://tentify.com/bookings/${booking._id}`;
 
@@ -111,6 +114,23 @@ export default function BookingConfirmation({ booking }) {
             Go to Home
           </GoHomeButton>
         </ButtonGroup>
+        {isPastBooking && (
+          <>
+            {showReviewForm ? (
+              <ReviewForm
+                tentId={booking.tentId?._id}
+                bookingId={booking._id}
+              />
+            ) : (
+              <LeaveReviewButton
+                onClick={() => setShowReviewForm(true)}
+                aria-label="Leave a review for this booking"
+              >
+                ⭐ Leave a Review
+              </LeaveReviewButton>
+            )}
+          </>
+        )}
       </Content>
     </PageWrapper>
   );

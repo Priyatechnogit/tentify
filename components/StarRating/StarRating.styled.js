@@ -7,5 +7,5 @@ export const StarContainer = styled.div`
 
 export const Star = styled.span`
   font-size: 1.2rem;
-  color: ${({ $filled }) => ($filled ? "#f5a623" : "#ccc")};
+  color: ${({ $filled }) => ($filled ? "#f5a623" : "#aaa")};
 `;
