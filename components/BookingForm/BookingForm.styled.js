@@ -221,6 +221,17 @@ export const ConfirmButton = styled.button`
   font-weight: ${theme.fontWeights.bold};
   cursor: pointer;
   margin-top: ${theme.spacing.small};
+  transition:
+    opacity 0.2s ease,
+    transform 0.1s ease;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
 
   &:disabled {
     opacity: 0.5;

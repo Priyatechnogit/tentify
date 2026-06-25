@@ -24,6 +24,7 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   color: ${({ $active }) =>
     $active ? theme.colors.text : theme.colors.textMuted};
+  transition: color 0.2s ease;
 `;
 
 export const NavIcon = styled.span`
@@ -42,4 +43,5 @@ export const ActiveIndicator = styled.span`
   background-color: ${({ $active }) =>
     $active ? theme.colors.primary : "transparent"};
   border-radius: ${theme.borderRadius.full};
+  transition: background-color 0.2s ease;
 `;

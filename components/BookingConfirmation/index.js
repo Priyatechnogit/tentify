@@ -20,7 +20,8 @@ import {
   LeaveReviewButton,
 } from "./BookingConfirmation.styled";
 import { formatDate } from "../../utils/formatDate";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import confetti from "canvas-confetti";
 
 export default function BookingConfirmation({ booking }) {
   const router = useRouter();
@@ -28,6 +29,14 @@ export default function BookingConfirmation({ booking }) {
   const [isCancelling, setIsCancelling] = useState(false);
   const [cancellationError, setCancellationError] = useState(null);
   const [showReviewForm, setShowReviewForm] = useState(false);
+
+  useEffect(() => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
+  }, []);
 
   const bookingUrl = `https://tentify.com/bookings/${booking._id}`;
 
