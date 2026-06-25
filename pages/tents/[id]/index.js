@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import ReviewList from "../../../components/ReviewList";
+import WaitlistButton from "../../../components/WaitlistButton";
 import {
   PageWrapper,
   HeroImage,
@@ -137,6 +138,7 @@ export default function TentDetailPage() {
         >
           {tent.isAvailable ? "Book Now" : "Fully Booked"}
         </BookNowButton>
+        {!tent.isAvailable && <WaitlistButton tentId={tent._id} />}
         <Divider />
         <SectionTitle>Guest Reviews</SectionTitle>
         {isReviewsLoading ? (
