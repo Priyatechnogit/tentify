@@ -15,12 +15,16 @@ export default async function handler(request, response) {
 
   const { tentId } = request.body;
 
+  if (!tentId) {
+    return response.status(400).json({ message: "tentId is required" });
+  }
+
   await dbConnect();
 
   try {
     const existingEntry = await Waitlist.findOne({
       tentId,
-      owner: session.user.name,
+      owner: session.user.id,
     });
 
     if (existingEntry) {
@@ -31,7 +35,7 @@ export default async function handler(request, response) {
 
     const newEntry = await Waitlist.create({
       tentId,
-      owner: session.user.name,
+      owner: session.user.id,
     });
 
     return response.status(201).json(newEntry);
