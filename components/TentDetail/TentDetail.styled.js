@@ -37,6 +37,11 @@ export const HeroWrapper = styled.div`
 export const Content = styled.div`
   padding: ${theme.spacing.medium};
   background-color: ${theme.colors.background};
+  animation: fadeIn 0.4s ease forwards;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 `;
 
 export const TentHeader = styled.div`
@@ -201,4 +206,15 @@ export const BookNowButton = styled.button`
   font-weight: ${theme.fontWeights.bold};
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   margin-top: ${theme.spacing.small};
+  transition:
+    opacity 0.2s ease,
+    transform 0.1s ease;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
 `;

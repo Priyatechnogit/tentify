@@ -12,6 +12,11 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   gap: ${theme.spacing.medium};
+  animation: fadeIn 0.4s ease forwards;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 `;
 
 export const ConfirmedHeading = styled.h1`
@@ -92,6 +97,17 @@ export const CancelButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: ${theme.spacing.small};
+  transition:
+    opacity 0.2s ease,
+    transform 0.1s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 `;
 
 export const GoHomeButton = styled.button`
@@ -104,6 +120,41 @@ export const GoHomeButton = styled.button`
   font-size: ${theme.fonts.medium};
   font-weight: ${theme.fontWeights.bold};
   cursor: pointer;
+  transition:
+    opacity 0.2s ease,
+    transform 0.1s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+`;
+
+export const LeaveReviewButton = styled.button`
+  width: 100%;
+  padding: ${theme.spacing.medium};
+  background-color: transparent;
+  color: ${theme.colors.primary};
+  border: 2px solid ${theme.colors.primary};
+  border-radius: ${theme.borderRadius.medium};
+  font-size: ${theme.fonts.medium};
+  font-weight: ${theme.fontWeights.bold};
+  cursor: pointer;
+  margin-top: ${theme.spacing.small};
+  transition:
+    opacity 0.2s ease,
+    transform 0.1s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 `;
 
 export const ErrorMessage = styled.div`
@@ -130,17 +181,4 @@ export const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${theme.spacing.small};
-`;
-
-export const LeaveReviewButton = styled.button`
-  width: 100%;
-  padding: 0.875rem;
-  background-color: transparent;
-  color: #f5a623;
-  border: 2px solid #f5a623;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  margin-top: 0.5rem;
 `;

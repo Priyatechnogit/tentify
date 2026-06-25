@@ -32,6 +32,24 @@ const GlobalStyles = createGlobalStyle`
     max-width: 100%;
     display: block;
   }
+
+  @keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .page-content{
+      animation: fadeIn 0.3s ease forwards;
+    }
+  }
+
 `;
 
 export default GlobalStyles;
