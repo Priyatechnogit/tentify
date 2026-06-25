@@ -20,7 +20,8 @@ import {
   LeaveReviewButton,
 } from "./BookingConfirmation.styled";
 import { formatDate } from "../../utils/formatDate";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import confetti from "canvas-confetti";
 
 export default function BookingConfirmation({ booking }) {
   const router = useRouter();
@@ -32,6 +33,22 @@ export default function BookingConfirmation({ booking }) {
   const bookingUrl = `https://tentify.com/bookings/${booking._id}`;
 
   const isPastBooking = new Date(booking.date) < new Date();
+
+  useEffect(() => {
+    if (isPastBooking) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) return;
+
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
+  }, [isPastBooking]);
 
   async function handleConfirmCancel() {
     setIsCancelling(true);
