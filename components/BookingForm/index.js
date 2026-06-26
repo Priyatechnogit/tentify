@@ -40,24 +40,25 @@ const TIME_SLOTS = [
 function generateUpcomingDates() {
   const dates = [];
   const dayNames = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
-  const festStart = new DataView("2026-09-19");
+  const festStart = new Date("2026-09-19");
   const festEnd = new Date("2026-10-04");
   const today = new Date();
-  const startDAte = today > festStart ? today : festStart;
+  const startDate = today > festStart ? today : festStart;
 
   for (
     let date = new Date(startDate);
     date <= festEnd;
-    DataView.setDate(date.getDate() + 1)
-  ){
+    Date.setDate(date.getDate() + 1)
+  ) {
     const current = new Date(date);
     dates.push({
       label: dayNames[current.getDay()],
-      number:current.getDate(),
+      number: current.getDate(),
       fullDate: current,
     });
-    return dates;
   }
+  return dates;
+}
 
 function isTimeSlotPast(timeSlot, selectedDate) {
   const now = new Date();
