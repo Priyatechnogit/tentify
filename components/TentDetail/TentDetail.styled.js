@@ -169,7 +169,7 @@ export const PriceLabel = styled.span`
 `;
 
 export const PriceValue = styled.span`
-  font-size: 26px;
+  font-size: ${theme.fonts.xlarge};
   font-weight: ${theme.fontWeights.black};
   color: ${theme.colors.primary};
 `;

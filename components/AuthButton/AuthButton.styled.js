@@ -24,7 +24,7 @@ export const SignOutButton = styled.button`
 `;
 
 export const UserName = styled.span`
-  font-size: 10px;
+  font-size: ${theme.fonts.small};
   color: ${theme.colors.textMuted};
 `;
 

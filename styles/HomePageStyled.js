@@ -17,7 +17,7 @@ export const PageHeader = styled.header`
 `;
 
 export const PageTitle = styled.h1`
-  font-size: 28px;
+  font-size: ${theme.fonts.xlarge};
   font-weight: ${theme.fontWeights.black};
   color: ${theme.colors.primary};
   text-align: center;
