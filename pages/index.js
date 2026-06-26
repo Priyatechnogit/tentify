@@ -13,6 +13,7 @@ import {
   CancellationBanner,
   PageTagline,
   HeaderContent,
+  CountdownBanner,
 } from "../styles/HomePageStyled";
 
 export default function HomePage() {
@@ -39,15 +40,28 @@ export default function HomePage() {
       })
     : [];
 
+  const daysUntilOktoberfest = Math.ceil(
+    (new Date("2026-09-19") - new Date()) / (1000 * 60 * 60 * 24)
+  );
+
   return (
     <PageWrapper>
       <PageHeader>
         <HeaderContent>
-          <PageTitle> Tentify 🍺</PageTitle>
+          <PageTitle> 🍻 Tentify 🍻 </PageTitle>
           <PageTagline>Beer, Bench & Booking</PageTagline>
         </HeaderContent>
         <AuthButton />
       </PageHeader>
+      {daysUntilOktoberfest > 0 && (
+        <CountdownBanner>
+          <span>
+            🍺 Oktoberfest starts in {daysUntilOktoberfest} days — September 19,
+            2026! &nbsp;&nbsp;&nbsp; 🍺 Oktoberfest starts in{" "}
+            {daysUntilOktoberfest} days — September 19, 2026!
+          </span>
+        </CountdownBanner>
+      )}
       {bookingSuccess && (
         <SuccessBanner>
           🎉 Booking confirmed! See you at Oktoberfest!{" "}
