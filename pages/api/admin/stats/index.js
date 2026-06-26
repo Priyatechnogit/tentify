@@ -1,9 +1,8 @@
+import { ADMIN_USERNAME } from "../../../../utils/adminConfig";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]";
 import dbConnect from "../../../../db/connect";
 import Booking from "../../../../db/models/Booking";
-
-const ADMIN_USERNAME = "Priyatechnogit";
 
 export default async function handler(request, response) {
   if (request.method !== "GET") {
