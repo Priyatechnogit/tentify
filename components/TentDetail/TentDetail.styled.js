@@ -218,3 +218,17 @@ export const BookNowButton = styled.button`
     transform: scale(0.98);
   }
 `;
+
+export const LocationLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: ${theme.spacing.xs};
+  color: ${theme.colors.primary};
+  font-size: ${theme.fonts.body};
+  text-decoration: none;
+  margin-bottom: ${theme.spacing.medium};
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
