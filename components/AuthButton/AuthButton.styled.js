@@ -24,12 +24,13 @@ export const SignOutButton = styled.button`
 `;
 
 export const UserName = styled.span`
-  font-size: ${theme.fonts.small};
+  font-size: 10px;
   color: ${theme.colors.textMuted};
 `;
 
 export const AuthWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: ${theme.spacing.small};
+  gap: 2px;
 `;

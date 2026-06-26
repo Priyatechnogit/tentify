@@ -13,6 +13,7 @@ export const PageHeader = styled.header`
   padding: ${theme.spacing.medium};
   border-bottom: 1px solid ${theme.colors.border};
   background: linear-gradient(135deg, #0a0e18 0%, #1a2235 100%);
+  position: relative;
 `;
 
 export const PageTitle = styled.h1`
@@ -61,6 +62,7 @@ export const HeaderContent = styled.div`
   align-items: center;
   gap: 2px;
   flex: 1;
+  padding: 0 80px;
 `;
 
 export const CountdownBanner = styled.div`
@@ -96,4 +98,14 @@ export const CountdownBanner = styled.div`
       animation: none;
     }
   }
+`;
+
+export const AuthWrapper = styled.div`
+  position: absolute;
+  right: ${theme.spacing.medium};
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 `;

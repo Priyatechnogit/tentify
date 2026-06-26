@@ -14,6 +14,7 @@ import {
   PageTagline,
   HeaderContent,
   CountdownBanner,
+  AuthWrapper,
 } from "../styles/HomePageStyled";
 
 export default function HomePage() {
@@ -51,7 +52,9 @@ export default function HomePage() {
           <PageTitle> 🍻 Tentify 🍻 </PageTitle>
           <PageTagline>Beer, Bench & Booking</PageTagline>
         </HeaderContent>
-        <AuthButton />
+        <AuthWrapper>
+          <AuthButton />
+        </AuthWrapper>
       </PageHeader>
       {daysUntilOktoberfest > 0 && (
         <CountdownBanner>
