@@ -25,7 +25,11 @@ export default async function handler(request, response) {
       return response.status(404).json({ message: "Booking not found" });
     }
 
-    if (booking.owner !== session.user.name) {
+    if (
+      booking.owner &&
+      booking.owner !== session.user.name &&
+      booking.owner !== session.user.email
+    ) {
       return response.status(403).json({ message: "Forbidden" });
     }
     const existingReview = await Review.findOne({ bookingId });
