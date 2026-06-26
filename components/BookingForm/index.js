@@ -43,6 +43,7 @@ function generateUpcomingDates() {
   const festStart = new Date("2026-09-19");
   const festEnd = new Date("2026-10-04");
   const today = new Date();
+  const startDate = today > festStart ? today : festStart;
 
   for (
     let date = new Date(startDate);
