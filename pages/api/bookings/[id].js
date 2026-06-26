@@ -1,3 +1,4 @@
+import { ADMIN_USERNAME } from "../../../utils/adminConfig";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]";
 import connectToDatabase from "../../../db/connect";
@@ -28,6 +29,9 @@ export default async function handler(request, response) {
       if (!session) {
         return response.status(401).json({ message: "Not authenticated" });
       }
+
+      const isAdmin = session.user.name === ADMIN_USERNAME;
+
       await connectToDatabase();
       const booking = await Booking.findById(id);
 
@@ -35,11 +39,11 @@ export default async function handler(request, response) {
         return response.status(404).json({ message: "Booking not found" });
       }
 
-      if (booking.owner && booking.owner !== session.user.email) {
+      if (!isAdmin && booking.owner && booking.owner !== session.user.email) {
         return response.status(403).json({ message: "Not authorized" });
       }
 
-      if (new Date(booking.date) < new Date()) {
+      if (!isAdmin && new Date(booking.date) < new Date()) {
         return response
           .status(400)
           .json({ message: "Cannot cancel a past booking" });
