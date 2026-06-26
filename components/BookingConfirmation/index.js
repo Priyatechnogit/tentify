@@ -42,6 +42,22 @@ export default function BookingConfirmation({ booking }) {
 
   const isPastBooking = new Date(booking.date) < new Date();
 
+  useEffect(() => {
+    if (isPastBooking) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) return;
+
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+    });
+  }, [isPastBooking]);
+
   async function handleConfirmCancel() {
     setIsCancelling(true);
     setCancellationError(null);
