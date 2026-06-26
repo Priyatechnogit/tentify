@@ -9,15 +9,18 @@ export const PageWrapper = styled.div`
 export const PageHeader = styled.header`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: ${theme.spacing.medium};
   border-bottom: 1px solid ${theme.colors.border};
+  background: linear-gradient(135deg, #0a0e18 0%, #1a2235 100%);
+  position: relative;
 `;
 
 export const PageTitle = styled.h1`
   font-size: ${theme.fonts.xlarge};
   font-weight: ${theme.fontWeights.black};
   color: ${theme.colors.primary};
+  text-align: center;
 `;
 
 export const SuccessBanner = styled.div`
@@ -42,4 +45,67 @@ export const CancellationBanner = styled.div`
   padding: ${theme.spacing.medium};
   margin: ${theme.spacing.medium};
   text-align: center;
+`;
+
+export const PageTagline = styled.p`
+  font-size: ${theme.fonts.small};
+  color: ${theme.colors.textMuted};
+  font-weight: ${theme.fontWeights.medium};
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-align: center;
+`;
+
+export const HeaderContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  padding: 0 80px;
+`;
+
+export const CountdownBanner = styled.div`
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: ${theme.colors.primary};
+  color: ${theme.colors.background};
+  font-size: ${theme.fonts.small};
+  font-weight: ${theme.fontWeights.bold};
+  padding: 6px 0;
+  z-index: 100;
+  overflow: hidden;
+  white-space: nowrap;
+
+  span {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(100vw);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    span {
+      animation: none;
+    }
+  }
+`;
+
+export const AuthWrapper = styled.div`
+  position: absolute;
+  right: ${theme.spacing.medium};
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 `;

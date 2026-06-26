@@ -27,6 +27,7 @@ import {
   ErrorMessage,
   LoadingMessage,
   BookNowButton,
+  LocationLink,
 } from "../../../components/TentDetail/TentDetail.styled";
 
 export default function TentDetailPage() {
@@ -109,6 +110,14 @@ export default function TentDetailPage() {
             {tent.isAvailable ? "Available" : "Full"}
           </StatusText>
         </StatusPill>
+        <LocationLink
+          href="https://maps.google.com/?q=Theresienwiese+Munich"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View Theresienwiese location on Google Maps"
+        >
+          📍 Theresienwiese, Munich
+        </LocationLink>
         <Divider />
         <InfoGrid>
           <InfoItem>

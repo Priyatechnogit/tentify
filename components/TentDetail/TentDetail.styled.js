@@ -169,7 +169,7 @@ export const PriceLabel = styled.span`
 `;
 
 export const PriceValue = styled.span`
-  font-size: 26px;
+  font-size: ${theme.fonts.xlarge};
   font-weight: ${theme.fontWeights.black};
   color: ${theme.colors.primary};
 `;
@@ -216,5 +216,19 @@ export const BookNowButton = styled.button`
 
   &:active:not(:disabled) {
     transform: scale(0.98);
+  }
+`;
+
+export const LocationLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: ${theme.spacing.xs};
+  color: ${theme.colors.primary};
+  font-size: ${theme.fonts.body};
+  text-decoration: none;
+  margin-bottom: ${theme.spacing.medium};
+
+  &:hover {
+    text-decoration: underline;
   }
 `;

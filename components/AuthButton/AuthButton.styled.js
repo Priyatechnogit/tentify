@@ -30,6 +30,7 @@ export const UserName = styled.span`
 
 export const AuthWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: ${theme.spacing.small};
+  gap: 2px;
 `;

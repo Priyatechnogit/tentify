@@ -10,11 +10,20 @@ export const Card = styled(Link)`
   border: 1px solid ${theme.colors.border};
   overflow: hidden;
   cursor: pointer;
-  transition: border-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
   text-decoration: none;
 
   &:hover {
     border-color: ${theme.colors.primary};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(212, 168, 67, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 `;
 
@@ -88,6 +97,14 @@ export const ArrowIcon = styled.span`
   color: ${theme.colors.textMuted};
   padding-right: ${theme.spacing.medium};
   flex-shrink: 0;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+
+  ${Card}:hover & {
+    transform: translateX(4px);
+    color: ${theme.colors.primary};
+  }
 `;
 
 export const MetaText = styled.p`
