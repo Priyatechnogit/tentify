@@ -49,6 +49,7 @@ function generateUpcomingDates() {
     let date = new Date(startDate);
     date <= festEnd;
     date.setDate(date.getDate() + 1)
+    Date.setDate(date.getDate() + 1)
   ) {
     const current = new Date(date);
     dates.push({
