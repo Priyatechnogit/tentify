@@ -40,15 +40,20 @@ const TIME_SLOTS = [
 function generateUpcomingDates() {
   const dates = [];
   const dayNames = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+  const festStart = new Date("2026-09-19");
+  const festEnd = new Date("2026-10-04");
   const today = new Date();
 
-  for (let i = 0; i < 6; i++) {
-    const date = new Date(today);
-    date.setDate(today.getDate() + i);
+  for (
+    let date = new Date(startDate);
+    date <= festEnd;
+    date.setDate(date.getDate() + 1)
+  ) {
+    const current = new Date(date);
     dates.push({
-      label: dayNames[date.getDay()],
-      number: date.getDate(),
-      fullDate: date,
+      label: dayNames[current.getDay()],
+      number: current.getDate(),
+      fullDate: current,
     });
   }
   return dates;

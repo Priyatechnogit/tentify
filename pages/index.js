@@ -11,6 +11,8 @@ import {
   PageTitle,
   SuccessBanner,
   CancellationBanner,
+  PageTagline,
+  HeaderContent,
 } from "../styles/HomePageStyled";
 
 export default function HomePage() {
@@ -40,7 +42,10 @@ export default function HomePage() {
   return (
     <PageWrapper>
       <PageHeader>
-        <PageTitle>Oktoberfest 2026 🍺</PageTitle>
+        <HeaderContent>
+          <PageTitle> Tentify 🍺</PageTitle>
+          <PageTagline>Beer, Bench & Booking</PageTagline>
+        </HeaderContent>
         <AuthButton />
       </PageHeader>
       {bookingSuccess && (

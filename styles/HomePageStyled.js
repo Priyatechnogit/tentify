@@ -9,7 +9,7 @@ export const PageWrapper = styled.div`
 export const PageHeader = styled.header`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   padding: ${theme.spacing.medium};
   border-bottom: 1px solid ${theme.colors.border};
 `;
@@ -42,4 +42,20 @@ export const CancellationBanner = styled.div`
   padding: ${theme.spacing.medium};
   margin: ${theme.spacing.medium};
   text-align: center;
+`;
+
+export const PageTagline = styled.p`
+  font-size: ${theme.fonts.small};
+  color: ${theme.colors.textMuted};
+  font-weight: ${theme.fontWeights.medium};
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+`;
+
+export const HeaderContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  flex: 1;
 `;
