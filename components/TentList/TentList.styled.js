@@ -8,6 +8,7 @@ export const ListContainer = styled.ul`
   flex-direction: column;
   gap: ${theme.spacing.medium};
   padding: ${theme.spacing.medium};
+  padding-bottom: 80px;
 `;
 
 export const EmptyState = styled.div`
